@@ -46,7 +46,7 @@ Rscript plot_main.R
 
 ![Maxwell-Boltzmann Plot Example](figures/maxwell_boltzmann_plot.png)
 
-**Note:** To change the macroscopic variables such as Temperature ($T$) and Molar Mass ($M$), edit the parameters inside `src/parameters.py` before running the integration engine.
+**Note:** To change the macroscopic variables such as Temperature ($Tc$) and Molar Mass ($M$), edit the parameters inside `src/parameters.py` before running the integration engine.
 
 ## Theoretical Background
 
@@ -75,7 +75,9 @@ $$v_{rms} = \sqrt{\frac{3 R T}{M}}$$
 ## Project Structure
 
 ```text
-├── data/           # Generated data files (.txt)
+├── data/           
+│   ├── dados.txt      # Distribution curve points (v, f(v))
+│   └── dados_car.txt  # Characteristic velocities (v_mp, v_avg, v_rms)                 # Generated data files (.txt)
 ├── figures/        # High-resolution distribution plots (.png)
 ├── src/            # Core modules (core.py, parameters.py, utils.py)
 ├── main.py         # Python numerical integration engine
