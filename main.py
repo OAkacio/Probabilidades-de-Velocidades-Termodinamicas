@@ -13,15 +13,19 @@ def main():
         "\n Iniciando o programa de distribuição de velocidades de Maxwell-Boltzmann \n"
     )
     print("-" * 100)
-    try: #* Calcula os pontos no gráfico e a distribuição de velocidades
+    try:  # * Calcula os pontos no gráfico e a distribuição de velocidades
         vectorX = []
         vectorY = []
+        vector_car = []
         for i in range(0, int(VELOCIDADE_MAXIMA_DE_OUTPUT), int(STEPS)):
             vectorX.append(i)
             vectorY.append(MaxwellBoltzmann(i))
         v_mp = V_MaisProvavel(T, M)
+        vector_car.append(v_mp)
         v_avg = V_Media(T, M)
+        vector_car.append(v_avg)
         V_rms = V_RMS(T, M)
+        vector_car.append(V_rms)
         breakp = 0
         print("\n Pontos do gráfico gerados com sucesso! \n")
         print("-" * 100)
@@ -32,7 +36,7 @@ def main():
         )
         print("-" * 100)
     if breakp == 0:
-        try: #* Salva dados gerados em arquivos .txt
+        try:  # * Salva dados gerados em arquivos .txt
             print("\n Salvando os dados gerados da distribuição de velocidades... \n")
             print("-" * 100)
             data = np.column_stack((vectorX, vectorY))
@@ -60,6 +64,31 @@ def main():
                 comments="# ",
             )
             print("\n Arquivo 'dados.txt' gerado com sucesso! \n")
+            print("-" * 100)
+            print(
+                "\n Salvando os dados caracterrísticos da distribuição de velocidades... \n"
+            )
+            print("-" * 100)
+            data_car = np.column_stack((vector_car, (0, 0, 0)))
+            header_text = (
+                "Descripiton: Velocidades Caracteristicas da Distribuicao da Velocidades de Maxwell-Boltzmann\n"
+                "Author: Victor Moreira Acacio \n"
+                "\n"
+                "Equations: v_mp = ((2 * R * T) / (M)) ** (1 / 2)\n     v_med = ((8 * R * T) / (pi * M)) ** (1 / 2)\n     v_rms = ((3 * R * T) / (M)) ** (1 / 2)\n"
+                "Units: v [m/s]\n"
+                f"Temperature: {T} K\n"
+                "\n"
+                "v,---"
+            )
+            np.savetxt(
+                "data/dados_car.txt",
+                data_car,
+                fmt="%.6f",
+                delimiter=",",
+                header=header_text,
+                comments="# ",
+            )
+            print("\n Arquivo 'dados_car.txt' gerado com sucesso! \n")
             print("-" * 100)
         except:
             print("\n Houve um erro ao salvar os dados. \n")

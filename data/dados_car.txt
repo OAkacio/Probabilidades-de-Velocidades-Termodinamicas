@@ -1,0 +1,13 @@
+# Descripiton: Velocidades Caracteristicas da Distribuicao da Velocidades de Maxwell-Boltzmann
+# Author: Victor Moreira Acacio 
+# 
+# Equations: v_mp = ((2 * R * T) / (M)) ** (1 / 2)
+#      v_med = ((8 * R * T) / (pi * M)) ** (1 / 2)
+#      v_rms = ((3 * R * T) / (M)) ** (1 / 2)
+# Units: v [m/s]
+# Temperature: 10273.15 K
+# 
+# v,---
+413.317606,0.000000
+466.378976,0.000000
+506.208618,0.000000
