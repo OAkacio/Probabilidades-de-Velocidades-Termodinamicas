@@ -1,8 +1,11 @@
+#
+#! -------------------------------------------------- Bibliotecas --------------------------------------------------
 from src.core import *
 from src.parameters import *
 from src.utils import *
-
 import numpy as np
+
+#! -------------------------------------------------- Início da Rotina Principal --------------------------------------------------
 
 
 def main():
@@ -10,19 +13,15 @@ def main():
         "\n Iniciando o programa de distribuição de velocidades de Maxwell-Boltzmann \n"
     )
     print("-" * 100)
-
-    try:
+    try: #* Calcula os pontos no gráfico e a distribuição de velocidades
         vectorX = []
         vectorY = []
-
         for i in range(0, int(VELOCIDADE_MAXIMA_DE_OUTPUT), int(STEPS)):
             vectorX.append(i)
             vectorY.append(MaxwellBoltzmann(i))
-
         v_mp = V_MaisProvavel(T, M)
         v_avg = V_Media(T, M)
         V_rms = V_RMS(T, M)
-
         breakp = 0
         print("\n Pontos do gráfico gerados com sucesso! \n")
         print("-" * 100)
@@ -32,14 +31,11 @@ def main():
             "\n Houve um erro na geração dos pontos do gráfico. Verifique os parâmetros de entrada e tente novamente. \n"
         )
         print("-" * 100)
-
     if breakp == 0:
-        try:
+        try: #* Salva dados gerados em arquivos .txt
             print("\n Salvando os dados gerados da distribuição de velocidades... \n")
             print("-" * 100)
-
             data = np.column_stack((vectorX, vectorY))
-
             header_text = (
                 "Descripiton: Distribuicao da Velocidades de Maxwell-Boltzmann\n"
                 "Author: Victor Moreira Acacio \n"
@@ -55,7 +51,6 @@ def main():
                 "\n"
                 "v,f(v)"
             )
-
             np.savetxt(
                 "data/dados.txt",
                 data,
@@ -64,13 +59,11 @@ def main():
                 header=header_text,
                 comments="# ",
             )
-
             print("\n Arquivo 'dados.txt' gerado com sucesso! \n")
             print("-" * 100)
         except:
             print("\n Houve um erro ao salvar os dados. \n")
             print("-" * 100)
-
     print("\n Distribuição de Velocidades de Maxwell-Boltzmann FINALIZADA! \n")
     print("-" * 100)
 
